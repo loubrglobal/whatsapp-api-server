@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deployment info
+      run: |
+        echo "🚀 Deployment workflow configured"
+        echo "Repository: https://github.com/loubrglobal/whatsapp-api-server"
+        echo "To enable automatic deployment:"
+        echo "1. Add SSH key to GitHub Secrets (DEPLOY_KEY)"
+        echo "2. Configure server IP in GitHub Secrets (SERVER_IP)"
+        echo "3. Update deploy.yml with SSH deployment commands"

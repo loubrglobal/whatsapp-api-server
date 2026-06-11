@@ -1,0 +1,20 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check server structure
+      run: |
+        echo "🔍 Checking WhatsApp API Server..."
+        [ -f "app/main.py" ] && echo "✅ main.py exists" || exit 1
+        [ -f "scripts/healthcheck.sh" ] && echo "✅ healthcheck.sh exists" || exit 1
+        [ -f ".env.example" ] && echo "✅ .env.example exists" || exit 1
+        [ -f "requirements.txt" ] && echo "✅ requirements.txt exists" || exit 1
