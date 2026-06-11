@@ -1,0 +1,22 @@
+[Unit]
+Description=WhatsApp Meta API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/whatsapp-api-server
+EnvironmentFile=/home/ubuntu/whatsapp-api-server/.env
+ExecStart=/home/ubuntu/whatsapp-api-server/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=false
+ReadWritePaths=/home/ubuntu/whatsapp-api-server
+
+[Install]
+WantedBy=multi-user.target
